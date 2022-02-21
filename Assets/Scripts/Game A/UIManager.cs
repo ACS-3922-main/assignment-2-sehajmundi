@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour { 
     private int _playerScore1;
@@ -37,10 +38,23 @@ public class UIManager : MonoBehaviour {
             _gameOverText.text = "PLAYER 1 WINS";
         }
         else if (_playerScore2 == _gameWinScore) {
-            _gameOverText.text = "PLAYER 2 WINS";
+            _gameOverText.text = "COMPUTER WINS";
         }
         _gameOverText.gameObject.SetActive(true);
         _ball.GetComponent<BallControl>().ResetBall();
+    }
+
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void Update()
+    {
+        if(Input.GetKey(KeyCode.Q))
+        {
+            QuitGame();
+        }
     }
 
 }
